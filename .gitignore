@@ -1,0 +1,4 @@
+.patres_venv
+.env
+.idea
+__pycache__/
