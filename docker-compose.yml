@@ -1,0 +1,20 @@
+services:
+  books_library:
+    build:
+      context: .
+    container_name: library_app
+    env_file:
+      - .env.docker-compose
+    depends_on:
+      - db
+    command: ["/library_patres/docker/wait-for-db.sh", "db", "/library_patres/docker/app.sh" ]
+    ports:
+      - 8003:8000
+  db:
+    image: postgres:17
+    container_name: library_app_db
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=${PG_DB_NAME}
+

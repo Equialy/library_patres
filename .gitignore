@@ -1,4 +1,5 @@
 .patres_venv
 .env
+.env.docker-compose
 .idea
 __pycache__/
