@@ -41,8 +41,7 @@ async def delete_authors(id: int, author_service: get_author_service) -> dict[st
     """
     :param id: ID Автора
     :return: Данные автора \n
-    При удалении автора из таблицы autors удаляется запись с автором. \n
-    В таблице books в поле id_autor ставится значение null
+    При удалении автора из таблицы autors удаляется происходит каскадное удаление. \n
     """
     result = await author_service.delete_item(id)
     logger.debug("Удаление авторов ", result)
