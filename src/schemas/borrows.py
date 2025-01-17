@@ -1,5 +1,5 @@
 from typing import Optional
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 
 
@@ -10,16 +10,14 @@ class BorrowSchema(BaseModel):
     date_borrow: date = Field(..., le=date.today())
     date_return: Optional[date]
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BorrowSchemaAdd(BaseModel):
     id_book: int = Field(..., ge=1)
     date_borrow: date = Field(..., le=date.today())
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BorrowsSchemaUpdate(BaseModel):
@@ -39,12 +37,10 @@ class BorrowsSchemaReturn(BaseModel):
     id_book: int = Field(..., ge=1)
     date_return: date = Field(..., le=date.today())
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BorrowsSchemaId(BaseModel):
     id: int = Field(..., ge=1)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

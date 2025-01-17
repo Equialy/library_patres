@@ -14,8 +14,8 @@ class Borrows(Base):
     id: Mapped[int] =  mapped_column(primary_key=True)
     id_book: Mapped[int] = mapped_column(ForeignKey("books.id", ondelete="CASCADE" ), nullable=False)
     name_reader: Mapped[str] = mapped_column(nullable=False, index=True)
-    date_borrow: Mapped[date] = mapped_column(nullable=True)
-    date_return: Mapped[date] = mapped_column(nullable=True)
+    date_borrow: Mapped[date] = mapped_column( nullable=True)
+    date_return: Mapped[date] = mapped_column( nullable=True)
     book: Mapped["Books"] = relationship("Books", back_populates="borrows")
 
     def to_read_model(self) -> BorrowSchema:

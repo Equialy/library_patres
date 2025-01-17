@@ -33,6 +33,9 @@ class SQLAlchemyRepository(AbstractRepository):
         return [row[0].to_read_model() for row in result.all()]
 
     async def delete(self, item_id):
+        query_select = await self.get_by_id(item_id)
+        if query_select == None:
+            raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
         stmt = delete(self.model).where(self.model.id == item_id).returning(self.model)
         result = await self.session.execute(stmt)
         return result.scalar_one()

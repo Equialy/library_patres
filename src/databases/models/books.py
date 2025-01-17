@@ -15,9 +15,9 @@ class Books(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(nullable=False, index=True)
     describe: Mapped[str] = mapped_column(nullable=False)
-    date_publication: Mapped[date] = mapped_column(nullable=False)
+    date_publication: Mapped[date] = mapped_column( nullable=False)
     genre: Mapped[str] = mapped_column(nullable=False, index=True)
-    id_author: Mapped[int] = mapped_column(ForeignKey("authors.id", ondelete="SET NULL"), nullable=True, index=True)
+    id_author: Mapped[int] = mapped_column(ForeignKey("authors.id", ondelete="CASCADE"), nullable=True, index=True)
     quantity: Mapped[int] = mapped_column(nullable=False)
     borrows: Mapped[list["Borrows"]] = relationship("Borrows", back_populates="book", cascade="all, delete-orphan")
     __table_args__ = (

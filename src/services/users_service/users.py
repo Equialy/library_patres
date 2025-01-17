@@ -1,4 +1,4 @@
-from pydantic import BaseModel,  Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class UsersSchema(BaseModel):
@@ -7,8 +7,7 @@ class UsersSchema(BaseModel):
     hashed_password: str = Field(..., min_length=4, max_length=255)
     role: str = Field(..., min_length=4, max_length=255)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UsersSchemaAdd(BaseModel):
@@ -16,13 +15,11 @@ class UsersSchemaAdd(BaseModel):
     hashed_password: str = Field(..., min_length=4, max_length=255)
     role: str = Field(..., min_length=4, max_length=255)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class UsersSchemaAuth(BaseModel):
     username: str = Field(..., max_length=255)
     hashed_password: str = Field(..., min_length=4, max_length=255)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

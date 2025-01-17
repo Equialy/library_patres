@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 import logging
 from src.api.depends import get_author_service
-from src.schemas.authors import AuthorsSchemaAdd, AuthorsSchemaDelete, AuthorsSchema, AuthorsSchemaUpdate
+from src.schemas.authors import AuthorsSchemaAdd,  AuthorsSchema, AuthorsSchemaUpdate
 
 router = APIRouter(
     tags=["Авторы"],
@@ -26,8 +26,8 @@ async def get_all_authors(author_service: get_author_service) -> dict[str, list[
 
 
 @router.get("/author_id/{id}", summary="Получить автора по id")
-async def get_authors_by_id(item_id: int, author_service: get_author_service) -> dict[str, AuthorsSchema]:
-    result = await author_service.get_item_by_id(item_id)
+async def get_authors_by_id(id: int, author_service: get_author_service) -> dict[str, AuthorsSchema]:
+    result = await author_service.get_item_by_id(id)
     return {"author": result}
 
 

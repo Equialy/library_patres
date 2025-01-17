@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from datetime import date
 
 
@@ -10,8 +10,7 @@ class AuthorsSchema(BaseModel):
     birthday: date = Field(..., le=date.today())
     biography: str = Field(..., min_length=1, max_length=1024)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AuthorsSchemaAdd(BaseModel):
@@ -20,8 +19,7 @@ class AuthorsSchemaAdd(BaseModel):
     birthday: date = Field(..., le=date.today())
     biography: str = Field(..., min_length=1)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AuthorsSchemaUpdate(BaseModel):
@@ -30,8 +28,7 @@ class AuthorsSchemaUpdate(BaseModel):
     birthday: date = Field(..., le=date.today())
     biography: str = Field(..., min_length=1)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class AuthorsSchemaDelete(BaseModel):

@@ -25,7 +25,7 @@ async def get_all_books(books_service: get_books_service,
                         page_size: int = 10) -> dict[str, list[BookSchema]]:
     """
     :param genre: Фильтр по жанру. Например 'Роман'. Регистр важен. \n
-    :param page: Страница \n
+    :param page: Страница. Выведутся книги только у которых нет значения null в поле id_author \n
     :param page_size: Количесвто  записей на странице
     """
 
@@ -34,8 +34,8 @@ async def get_all_books(books_service: get_books_service,
 
 
 @router.get("/books_id/{id}", summary="Получить книгу по id")
-async def get_books_by_id(id_book: int, books_service: get_books_service) -> dict[str, BookSchema]:
-    result = await books_service.get_book_by_id(id_book)
+async def get_books_by_id(id: int, books_service: get_books_service) -> dict[str, BookSchema]:
+    result = await books_service.get_book_by_id(id)
     return {"book": result}
 
 

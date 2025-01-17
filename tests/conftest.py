@@ -1,6 +1,7 @@
 import asyncio
 import json
 from datetime import datetime
+
 import pytest
 from sqlalchemy import insert
 from httpx import AsyncClient, ASGITransport
@@ -12,7 +13,6 @@ from src.databases.models.borrows import Borrows
 from src.databases.postgres.connect_db import Base, engine, async_session_maker
 
 
-@pytest.fixture(scope="session", autouse=True)
 async def prepare_database():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
@@ -30,12 +30,15 @@ async def prepare_database():
         if author["birthday"]:
             author["birthday"] = datetime.strptime(author["birthday"], "%Y-%m-%d")
 
+    for book in books:
+        if book["date_publication"]:
+            book["date_publication"] = datetime.strptime(book["date_publication"], "%Y-%m-%d")
+
     for borrow in borrows:
         if borrow["date_borrow"]:
             borrow["date_borrow"] = datetime.strptime(borrow["date_borrow"], "%Y-%m-%d")
         if borrow["date_return"]:
             borrow["date_return"] = datetime.strptime(borrow["date_return"], "%Y-%m-%d")
-
 
     async with async_session_maker() as session:
         add_authors = insert(Authors).values(authors)
@@ -46,7 +49,6 @@ async def prepare_database():
         await session.execute(add_books)
         await session.execute(add_borrows)
         await session.commit()
-
 
 
 # документация pytest-asyncio
@@ -63,3 +65,7 @@ async def ac_client():
         yield ac
 
 
+@pytest.fixture(scope="function")
+async def session():
+    async with async_session_maker() as session:
+        yield session

@@ -1,7 +1,7 @@
 from datetime import date
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 
 
 class BookSchema(BaseModel):
@@ -13,8 +13,7 @@ class BookSchema(BaseModel):
     genre: str = Field(..., min_length=1, max_length=50)
     quantity: int = Field(..., ge=0)
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BooksSchemaAdd(BaseModel):
@@ -37,6 +36,7 @@ class BooksSchemaUpdate(BaseModel):
     date_publication: date
     genre: str = Field(..., min_length=1, max_length=50)
     quantity: int = Field(..., ge=0)
+
 
 
 class BookSchemaDelete(BaseModel):

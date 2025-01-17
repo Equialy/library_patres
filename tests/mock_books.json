@@ -1,37 +1,47 @@
 [
   {
     "id": 1,
-    "name": "Война и мир",
+    "title": "Война и мир",
     "describe": "Роман-эпопея Льва Толстого",
+    "date_publication": "1800-12-01",
     "id_author": 1,
+    "genre": "Роман" ,
     "quantity": 10
   },
   {
     "id": 2,
-    "name": "Преступление и наказание",
+    "title": "Преступление и наказание",
     "describe": "Роман Фёдора Достоевского",
+    "date_publication": "1800-12-01",
     "id_author": 2,
+    "genre": "Роман",
     "quantity": 7
   },
   {
     "id": 3,
-    "name": "Чайка",
+    "title": "Чайка",
     "describe": "Пьеса Антона Чехова",
+    "date_publication": "1800-12-01",
     "id_author": 3,
+    "genre": "Роман",
     "quantity": 5
   },
   {
     "id": 4,
-    "name": "Евгений Онегин",
+    "title": "Евгений Онегин",
     "describe": "Роман в стихах Александра Пушкина",
+    "date_publication": "1800-12-01",
     "id_author": 4,
+    "genre": "Роман",
     "quantity": 12
   },
   {
     "id": 5,
-    "name": "Отцы и дети",
+    "title": "Отцы и дети",
     "describe": "Роман Ивана Тургенева",
+    "date_publication": "1800-12-01",
     "id_author": 5,
+    "genre": "Роман",
     "quantity": 8
   }
 ]

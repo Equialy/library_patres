@@ -12,7 +12,7 @@ class Authors(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(nullable=False, index=True)
     second_name: Mapped[str] = mapped_column(nullable=False, index=True)
-    birthday: Mapped[date] = mapped_column(nullable=False)
+    birthday: Mapped[date] = mapped_column( nullable=False)
     biography: Mapped[str] = mapped_column(nullable=True)
 
     def to_read_model(self) -> AuthorsSchema:
